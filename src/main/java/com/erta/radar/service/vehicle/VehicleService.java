@@ -7,5 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface VehicleService {
-    public List<Vehicle> getAllVehicles();
+    public List<VehicleDto> getAllVehicles();
+
+    public VehicleDto addVehicle(VehicleDto vehicleDto);
+
 }

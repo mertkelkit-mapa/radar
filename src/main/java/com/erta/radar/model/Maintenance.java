@@ -1,6 +1,7 @@
 package com.erta.radar.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,7 +16,8 @@ import java.time.LocalDate;
 public class Maintenance {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     private double cost;
     private String description;

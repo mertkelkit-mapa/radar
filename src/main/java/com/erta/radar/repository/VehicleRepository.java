@@ -12,6 +12,7 @@ import java.util.List;
 public interface VehicleRepository extends JpaRepository<Vehicle, String> {
 
     // todo what da fuk
-    List<Vehicle> findAll();
+    List<Vehicle> getAllByIdNotNull();
+
 
 }
