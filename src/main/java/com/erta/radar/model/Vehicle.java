@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "Vehicle")
 public class Vehicle {
@@ -24,6 +25,7 @@ public class Vehicle {
     // todo plate object
     private String plateNumber;
     // todo driver object
+    // make driver as list and show according to dates
     private String driver;
     @OneToMany(mappedBy = "vehicle", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Maintenance> maintenances = new ArrayList<>();

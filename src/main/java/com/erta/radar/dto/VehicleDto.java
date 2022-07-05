@@ -13,6 +13,7 @@ public class VehicleDto {
     private List<MaintenanceDto> maintenances;
     private String brand;
     private String model;
+    private int kilometer;
 
 
 

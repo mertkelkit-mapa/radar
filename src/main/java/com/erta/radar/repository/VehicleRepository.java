@@ -15,4 +15,5 @@ public interface VehicleRepository extends JpaRepository<Vehicle, String> {
     List<Vehicle> getAllByIdNotNull();
 
 
+    Vehicle getById(String vehicleId);
 }

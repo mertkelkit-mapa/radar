@@ -11,4 +11,10 @@ public interface VehicleService {
 
     public VehicleDto addVehicle(VehicleDto vehicleDto);
 
+    public VehicleDto updatePlateNumber(String plateNumber, String vehicleId);
+
+    public VehicleDto updateDriver(String driver, String vehicleId);
+
+    public void deleteVehicle(String vehicleId);
+
 }

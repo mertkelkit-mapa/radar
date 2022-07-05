@@ -5,10 +5,7 @@ import com.erta.radar.model.Vehicle;
 import com.erta.radar.service.vehicle.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
@@ -36,6 +33,22 @@ public class VehicleController {
     @RequestMapping(value= "/", method = RequestMethod.POST)
     public VehicleDto addVehicle(@RequestBody VehicleDto vehicleDto){
         return vehicleService.addVehicle(vehicleDto);
+    }
+
+    // todo find a good logic for this update methods and implement
+    @RequestMapping(value = "/{vehicleId}/plate", method = RequestMethod.PUT)
+    public VehicleDto updatePlateNumber(@RequestParam String plateNumber, @PathVariable String vehicleId){
+        return vehicleService.updatePlateNumber(plateNumber, vehicleId);
+    }
+
+    @RequestMapping(value = "/{vehicleId}/driver", method = RequestMethod.PUT)
+    public VehicleDto updateDriver(@RequestParam String driver, @PathVariable String vehicleId){
+        return vehicleService.updateDriver(driver, vehicleId);
+    }
+
+    @RequestMapping(value = "/{vehicleId}")
+    public void deleteVehicle(@PathVariable String vehicleId){
+        vehicleService.deleteVehicle(vehicleId);
     }
 
 }

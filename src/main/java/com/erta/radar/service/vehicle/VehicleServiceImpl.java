@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class VehicleServiceImpl implements VehicleService {
@@ -31,5 +30,24 @@ public class VehicleServiceImpl implements VehicleService {
     public VehicleDto addVehicle(VehicleDto vehicleDto) {
         Vehicle savedVehicle = vehicleRepository.save(vehicleMapper.mapToModel(vehicleDto));
         return vehicleMapper.mapToDto(savedVehicle);
+    }
+
+    @Override
+    public VehicleDto updatePlateNumber(String plateNumber, String vehicleId) {
+        Vehicle vehicleToUpdate = vehicleRepository.getById(vehicleId);
+        vehicleToUpdate.setPlateNumber(plateNumber);
+        return vehicleMapper.mapToDto(vehicleRepository.save(vehicleToUpdate));
+    }
+
+    @Override
+    public VehicleDto updateDriver(String driver, String vehicleId) {
+        Vehicle vehicleToUpdate = vehicleRepository.getById(vehicleId);
+        vehicleToUpdate.setDriver(driver);
+        return vehicleMapper.mapToDto(vehicleRepository.save(vehicleToUpdate));
+    }
+
+    @Override
+    public void deleteVehicle(String vehicleId) {
+        vehicleRepository.deleteById(vehicleId);
     }
 }
