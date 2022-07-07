@@ -1,7 +1,6 @@
 package com.erta.radar.model;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,16 +11,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Maintenance")
-public class Maintenance {
+@Builder
+@Table(name = "Driver")
+public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double cost;
-    private String description;
-    private LocalDate date;
-    @ManyToOne
+    private String name;
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicleId")
     private Vehicle vehicle;
+
 }

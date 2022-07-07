@@ -1,6 +1,7 @@
 package com.erta.radar.service.vehicle;
 
 import com.erta.radar.dto.VehicleDto;
+import com.erta.radar.model.Driver;
 import com.erta.radar.model.Vehicle;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,10 @@ public interface VehicleService {
 
     public VehicleDto addVehicle(VehicleDto vehicleDto);
 
-    public VehicleDto updatePlateNumber(String plateNumber, String vehicleId);
+    public VehicleDto updatePlateNumber(String plateNumber, Long vehicleId);
 
-    public VehicleDto updateDriver(String driver, String vehicleId);
+    public VehicleDto updateDriver(String driverName, Long vehicleId);
 
-    public void deleteVehicle(String vehicleId);
+    public void deleteVehicle(Long vehicleId);
 
 }

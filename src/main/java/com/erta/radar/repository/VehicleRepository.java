@@ -15,5 +15,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, String> {
     List<Vehicle> getAllByIdNotNull();
 
 
-    Vehicle getById(String vehicleId);
+    Vehicle getById(Long vehicleId);
+
+    void deleteById(Long id);
 }

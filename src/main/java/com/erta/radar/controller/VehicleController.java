@@ -1,13 +1,11 @@
 package com.erta.radar.controller;
 
 import com.erta.radar.dto.VehicleDto;
-import com.erta.radar.model.Vehicle;
 import com.erta.radar.service.vehicle.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -37,17 +35,19 @@ public class VehicleController {
 
     // todo find a good logic for this update methods and implement
     @RequestMapping(value = "/{vehicleId}/plate", method = RequestMethod.PUT)
-    public VehicleDto updatePlateNumber(@RequestParam String plateNumber, @PathVariable String vehicleId){
+    public VehicleDto updatePlateNumber(@RequestParam String plateNumber, @PathVariable Long vehicleId){
         return vehicleService.updatePlateNumber(plateNumber, vehicleId);
     }
 
     @RequestMapping(value = "/{vehicleId}/driver", method = RequestMethod.PUT)
-    public VehicleDto updateDriver(@RequestParam String driver, @PathVariable String vehicleId){
-        return vehicleService.updateDriver(driver, vehicleId);
+    public VehicleDto updateDriver(@RequestParam String driverName, @PathVariable Long vehicleId){
+        return vehicleService.updateDriver(driverName, vehicleId);
     }
 
-    @RequestMapping(value = "/{vehicleId}")
-    public void deleteVehicle(@PathVariable String vehicleId){
+    // todo transactional annotation here on in service ?
+    @Transactional
+    @RequestMapping(value = "/{vehicleId}", method = RequestMethod.DELETE)
+    public void deleteVehicle(@PathVariable Long vehicleId){
         vehicleService.deleteVehicle(vehicleId);
     }
 

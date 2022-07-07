@@ -3,6 +3,7 @@ package com.erta.radar.mapper;
 import com.erta.radar.dto.VehicleDto;
 import com.erta.radar.model.Vehicle;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

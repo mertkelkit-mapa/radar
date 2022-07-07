@@ -2,11 +2,13 @@ package com.erta.radar.service.vehicle;
 
 import com.erta.radar.dto.VehicleDto;
 import com.erta.radar.mapper.VehicleMapper;
+import com.erta.radar.model.Driver;
 import com.erta.radar.model.Vehicle;
 import com.erta.radar.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,21 +35,24 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public VehicleDto updatePlateNumber(String plateNumber, String vehicleId) {
+    public VehicleDto updatePlateNumber(String plateNumber, Long vehicleId) {
         Vehicle vehicleToUpdate = vehicleRepository.getById(vehicleId);
         vehicleToUpdate.setPlateNumber(plateNumber);
         return vehicleMapper.mapToDto(vehicleRepository.save(vehicleToUpdate));
     }
 
     @Override
-    public VehicleDto updateDriver(String driver, String vehicleId) {
+    public VehicleDto updateDriver(String driverName, Long vehicleId) {
+        Driver driver = new Driver();
+        driver.setName(driverName);
+        driver.setStartDate(LocalDate.now());
         Vehicle vehicleToUpdate = vehicleRepository.getById(vehicleId);
-        vehicleToUpdate.setDriver(driver);
+        vehicleToUpdate.getDrivers().add(driver);
         return vehicleMapper.mapToDto(vehicleRepository.save(vehicleToUpdate));
     }
 
     @Override
-    public void deleteVehicle(String vehicleId) {
+    public void deleteVehicle(Long vehicleId) {
         vehicleRepository.deleteById(vehicleId);
     }
 }
